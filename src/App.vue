@@ -1,11 +1,11 @@
 <template>
   <v-app id="app">
-    <v-app-bar max-height="68px" dark>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>SAF</v-toolbar-title>
+    <v-app-bar max-height="68px" dark class="d-flex justify-center text-h3">
+      <!-- <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon> -->
+      SAF
     </v-app-bar>
     <v-main>
-      <v-navigation-drawer temporary absolute v-model="drawer">
+      <!-- <v-navigation-drawer temporary absolute v-model="drawer">
         <v-list nav dense>
           <v-list-item-group no-action v-model="group">
 
@@ -47,9 +47,8 @@
 
           </v-list-item-group>
         </v-list>
-      </v-navigation-drawer>
+      </v-navigation-drawer> -->
       <router-view />
-
     </v-main>
   </v-app>
 </template>
@@ -71,7 +70,7 @@ export default {
 }
 .theme--dark.v-list-item--active:hover::before,
 .theme--dark.v-list-item--active::before {
-  opacity: none; 
+  opacity: none;
 }
 .v-application a {
   color: #fff !important;
