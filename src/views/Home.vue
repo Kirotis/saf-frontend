@@ -1,7 +1,7 @@
 <template>
   <v-row class="home">
     <v-hover v-slot="{ hover }">
-      <v-col
+      <v-col @click="roomCreateOverview = true"
         class="indigo lighten-3 justify-center align-center d-flex"
         cols="12"
         xs="12"
@@ -67,10 +67,11 @@
         </div>
       </v-col>
     </v-hover>
-    <v-dialog v-model="roomCreateOverview">
+    <v-dialog max-width="400px" v-model="roomCreateOverview">
       <RedirectRoomDialog
-        :loading="loadingCreateingRoom"
-        @create="createRoom()"
+        :loading="loadingCreatingRoom"
+        @create="createRoom"
+        @close="roomCreateOverview = false"
       />
     </v-dialog>
   </v-row>
@@ -78,6 +79,7 @@
 
 <script>
 import RedirectRoomDialog from "../components/RedirectRoomDialog.vue";
+// import socket from "../services/socketService"
 
 export default {
   components: {
@@ -86,11 +88,18 @@ export default {
   name: "Home",
   data: () => ({
     roomCreateOverview: false,
-    loadingCreateingRoom: false,
+    loadingCreatingRoom: false,
   }),
   methods: {
-    createRoom() {
-      this.loadingCreateingRoom = true;
+    createRoom(title) {
+      this.loadingCreatingRoom = true;
+      // socket.emit("create", title)
+      // socket.on("roomCreated", () => {
+      // })
+      setTimeout(() => {
+        this.$router.push(`/room/${title}`)
+        this.loadingCreatingRoom = false
+      }, 1000)
     },
   },
 };

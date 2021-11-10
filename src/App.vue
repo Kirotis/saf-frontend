@@ -67,6 +67,7 @@ export default {
 * {
   margin: 0px;
   padding: 0px;
+  overflow: hidden;
 }
 .theme--dark.v-list-item--active:hover::before,
 .theme--dark.v-list-item--active::before {

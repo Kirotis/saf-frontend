@@ -11,8 +11,18 @@ const routes = [
   },
   {
     path: '/room/:roomName',
-    name: 'Room',
-    props: true,
+    name: ':room',
+    props: {
+      isHost: true
+    },
+    component: () => import('../views/HrefRoom.vue')
+  },
+  {
+    path: '/watch/:roomName',
+    name: 'watch',
+    props: {
+      isHost: false
+    },
     component: () => import('../views/HrefRoom.vue')
   }
 ]

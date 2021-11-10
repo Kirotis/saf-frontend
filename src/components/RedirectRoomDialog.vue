@@ -3,7 +3,7 @@
     <v-card-title> Room name </v-card-title>
 
     <v-card-text>
-      <v-text-field
+      <v-text-field ref="title"
         v-model="title"
         :rules="rules"
         :loading="loading"
@@ -14,7 +14,15 @@
       ></v-text-field>
     </v-card-text>
 
-    <v-card-actions class="d-flex justify-center">
+    <v-card-actions class="d-flex justify-space-between">
+      <v-btn
+        color="red"
+        class="ma-2 white--text"
+        @click="close()"
+      >
+        Close
+        <v-icon right dark> mdi-close-circle </v-icon>
+      </v-btn>
       <v-btn
         :loading="loading"
         :disabled="loading"
@@ -32,6 +40,9 @@
 <script>
 
 export default {
+  activated() {
+    this.$refs.title.focus()
+  },
   data: () => ({
     rules: [(v) => v.length <= 25 || "Max 25 characters"],
     title: "",
@@ -44,8 +55,11 @@ export default {
   },
   methods: {
     create() {
-        return this.$emit('create')
+        return this.$emit('create', this.title)
     },
+    close() {
+      return this.$emit("close")
+    }
   },
 };
 </script>
