@@ -11,8 +11,9 @@ const routes = [
   },
   {
     path: '/room/:roomName',
-    name: ':room',
-    component: () => import('../views/HrefRoom.vue')
+    name: 'room',
+    props: true,
+    component: () => import('../views/Room.vue')
   },
   // {
   //   path: '/watch/:roomName',

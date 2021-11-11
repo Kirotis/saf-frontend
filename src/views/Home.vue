@@ -69,7 +69,6 @@
     </v-hover>
     <v-dialog max-width="400px" v-model="roomCreateOverview">
       <RedirectRoomDialog
-        :loading="loadingCreatingRoom"
         @create="createRoom"
         @close="roomCreateOverview = false"
       />
@@ -79,7 +78,6 @@
 
 <script>
 import RedirectRoomDialog from "../components/RedirectRoomDialog.vue";
-import socket from "../services/socketService";
 
 export default {
   components: {
@@ -92,15 +90,7 @@ export default {
   }),
   methods: {
     createRoom(title) {
-      this.loadingCreatingRoom = true;
-      // socket.emit("create", title)
-      // socket.on("roomCreated", () => {
-      // })
-      setTimeout(() => {
-        this.$router.push(`/room/${title}`)
-        socket.emit('createRoom', this.roomName)
-        this.loadingCreatingRoom = false
-      }, 1000)
+      this.$router.push(`/room/${title}`)
     },
   },
 };

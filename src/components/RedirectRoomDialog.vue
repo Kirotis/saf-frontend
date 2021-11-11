@@ -3,7 +3,8 @@
     <v-card-title> Room name </v-card-title>
 
     <v-card-text>
-      <v-text-field ref="title"
+      <v-text-field
+        ref="title"
         v-model="title"
         :rules="rules"
         :loading="loading"
@@ -15,11 +16,7 @@
     </v-card-text>
 
     <v-card-actions class="d-flex justify-space-between">
-      <v-btn
-        color="red"
-        class="ma-2 white--text"
-        @click="close()"
-      >
+      <v-btn color="red" class="ma-2 white--text" @click="close()">
         Close
         <v-icon right dark> mdi-close-circle </v-icon>
       </v-btn>
@@ -29,6 +26,7 @@
         color="blue-grey"
         class="ma-2 white--text"
         @click="create()"
+        outlined
       >
         Create
         <v-icon right dark> mdi-view-grid-plus-outline </v-icon>
@@ -38,28 +36,27 @@
 </template>
 
 <script>
-
 export default {
   activated() {
-    this.$refs.title.focus()
+    this.$refs.title.focus();
   },
   data: () => ({
     rules: [(v) => v.length <= 25 || "Max 25 characters"],
     title: "",
   }),
   props: {
-      loading: {
-          type: Boolean,
-          default: () => false,
-      }
+    loading: {
+      type: Boolean,
+      default: () => false,
+    },
   },
   methods: {
     create() {
-        return this.$emit('create', this.title)
+      return this.$emit("create", this.title);
     },
     close() {
-      return this.$emit("close")
-    }
+      return this.$emit("close");
+    },
   },
 };
 </script>

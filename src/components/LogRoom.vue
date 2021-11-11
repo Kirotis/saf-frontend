@@ -1,6 +1,5 @@
 <template>
   <v-container
-    v-scroll
     class="log-room d-flex flex-column-reverse grey darken-3 font-weight-bold"
   >
     <p

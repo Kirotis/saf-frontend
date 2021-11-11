@@ -69,12 +69,14 @@ export default {
   padding: 0px;
   overflow: hidden;
 }
+
+body{
+  background-color: #4c4c4c;
+}
+
 .theme--dark.v-list-item--active:hover::before,
 .theme--dark.v-list-item--active::before {
   opacity: none;
-}
-.v-application a {
-  color: #fff !important;
 }
 .nuxt-link-custom {
   text-decoration: none;
