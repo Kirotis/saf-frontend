@@ -12,19 +12,13 @@ const routes = [
   {
     path: '/room/:roomName',
     name: ':room',
-    props: {
-      isHost: true
-    },
     component: () => import('../views/HrefRoom.vue')
   },
-  {
-    path: '/watch/:roomName',
-    name: 'watch',
-    props: {
-      isHost: false
-    },
-    component: () => import('../views/HrefRoom.vue')
-  }
+  // {
+  //   path: '/watch/:roomName',
+  //   name: 'watch',
+  //   component: () => import('../views/HrefRoom.vue')
+  // }
 ]
 
 const router = new VueRouter({

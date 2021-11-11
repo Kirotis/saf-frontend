@@ -4,7 +4,7 @@
     class="log-room d-flex flex-column-reverse grey darken-3 font-weight-bold"
   >
     <p
-      class="white--text font-weight-light"
+      class="white--text font-weight-light rounded-lg"
       v-for="log of logs"
       v-bind:key="log"
     >

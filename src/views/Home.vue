@@ -79,7 +79,7 @@
 
 <script>
 import RedirectRoomDialog from "../components/RedirectRoomDialog.vue";
-// import socket from "../services/socketService"
+import socket from "../services/socketService";
 
 export default {
   components: {
@@ -98,6 +98,7 @@ export default {
       // })
       setTimeout(() => {
         this.$router.push(`/room/${title}`)
+        socket.emit('createRoom', this.roomName)
         this.loadingCreatingRoom = false
       }, 1000)
     },
