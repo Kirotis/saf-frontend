@@ -10,16 +10,17 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/room/:roomName',
-    name: 'room',
+    path: '/host/:roomName',
+    name: 'Room',
     props: true,
-    component: () => import('../views/Room.vue')
+    component: () => import('../views/RoomHost.vue')
   },
-  // {
-  //   path: '/watch/:roomName',
-  //   name: 'watch',
-  //   component: () => import('../views/HrefRoom.vue')
-  // }
+  {
+    path: '/join/:roomName',
+    name: 'Room',
+    props: true,
+    component: () => import('../views/RoomJoin.vue')
+  },
 ]
 
 const router = new VueRouter({

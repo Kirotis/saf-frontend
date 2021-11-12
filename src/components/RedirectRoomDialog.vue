@@ -1,17 +1,17 @@
 <template>
   <v-card>
-    <v-card-title> Room name </v-card-title>
+    <v-card-title>{{titleName}}</v-card-title>
 
     <v-card-text>
       <v-text-field
-        ref="title"
         v-model="title"
+        ref="title"
+        counter="30"
         :rules="rules"
         :loading="loading"
-        counter="25"
-        hint="Gostinaya"
-        label="Room name"
+        hint="Ti pidor"
         @keyup.enter="create()"
+        outlined
       ></v-text-field>
     </v-card-text>
 
@@ -26,7 +26,6 @@
         color="blue-grey"
         class="ma-2 white--text"
         @click="create()"
-        outlined
       >
         Create
         <v-icon right dark> mdi-view-grid-plus-outline </v-icon>
@@ -41,7 +40,7 @@ export default {
     this.$refs.title.focus();
   },
   data: () => ({
-    rules: [(v) => v.length <= 25 || "Max 25 characters"],
+    rules: [(v) => v.length <= 30 || "Max 30 characters"],
     title: "",
   }),
   props: {
@@ -49,10 +48,15 @@ export default {
       type: Boolean,
       default: () => false,
     },
+    titleName: {
+      type: String,
+      default: () => "Enter room name"
+    }
   },
   methods: {
     create() {
-      return this.$emit("create", this.title);
+      if (this.title && this.title.length <= 30)
+        return this.$emit("create", this.title);
     },
     close() {
       return this.$emit("close");

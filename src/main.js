@@ -7,7 +7,7 @@ import VueSocketIO from "vue-socket.io"
 
 Vue.config.productionTip = false
 
-const connection = "http://localhost:3100"
+const connection = ""
 const SocketInstance = io(connection)
 
 Vue.use(

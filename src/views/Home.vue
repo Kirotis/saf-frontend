@@ -1,7 +1,8 @@
 <template>
   <v-row class="home">
     <v-hover v-slot="{ hover }">
-      <v-col @click="roomCreateOverview = true"
+      <v-col
+        @click="openDialog('createRoom')"
         class="indigo lighten-3 justify-center align-center d-flex"
         cols="12"
         xs="12"
@@ -35,6 +36,7 @@
     </v-hover>
     <v-hover v-slot="{ hover }">
       <v-col
+        @click="openDialog('joinRoom')"
         class="purple lighten-3 justify-center align-center d-flex"
         cols="12"
         xs="12"
@@ -69,7 +71,7 @@
     </v-hover>
     <v-dialog max-width="400px" v-model="roomCreateOverview">
       <RedirectRoomDialog
-        @create="createRoom"
+        @create="method"
         @close="roomCreateOverview = false"
       />
     </v-dialog>
@@ -86,11 +88,18 @@ export default {
   name: "Home",
   data: () => ({
     roomCreateOverview: false,
-    loadingCreatingRoom: false,
+    method: () => {}
   }),
   methods: {
-    createRoom(title) {
-      this.$router.push(`/room/${title}`)
+    createRoom(room) {
+      this.$router.push(`/host/${room}`);
+    },
+    joinRoom(room) {
+      this.$router.push(`/join/${room}`);
+    },
+    openDialog(methodName) {
+      this.method = this[methodName];
+      this.roomCreateOverview = true;
     },
   },
 };

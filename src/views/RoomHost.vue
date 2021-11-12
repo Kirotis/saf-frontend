@@ -3,9 +3,7 @@
     <v-container
       class="log-room d-flex flex-column-reverse grey darken-3 font-weight-bold"
     >
-      <object
-        data="https://www.digitalocean.com/community/tutorials/vuejs-vue-socketio"
-      >
+      <object data="https://www.youtube.com/watch?v=GyStKaAoFnM&t=30s">
         Cannot reed link {{ activeUrl }}
       </object>
     </v-container>
@@ -25,9 +23,10 @@
 
 <script>
 import LogRoom from "../components/LogRoom.vue";
+import roomMixin from "../mixins/roomMixin";
 
 export default {
-  name: "Room",
+  name: "RoomHost",
   components: {
     LogRoom,
   },
@@ -37,33 +36,16 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    activeUrl: "",
-    newHref: "",
-    logs: ["Welcome to logs"],
-  }),
   created() {
     this.$socket.emit("createRoom", this.roomName);
+    document.title = "Room: " + this.roomName;
   },
-  sockets: {
-    setHref(href) {
-      this.activeUrl = href;
-    },
-    sendLog(log) {
-      this.logs.push(log);
-    },
-    connect() {
-      console.log("href connected");
-    },
-  },
-  methods: {
-    editHref() {
-      console.log(`this.$refs.test.value`, this.$refs.test);
-      this.$socket.emit("editHref", this.roomName, this.newHref);
-    },
-  },
+  mixins: [roomMixin],
   destroyed() {
     this.$socket.emit("deleteRoom", this.roomName);
+    this.logs = [];
+    this.activeUrl = "";
+    this.newHref = "";
   },
 };
 </script>
