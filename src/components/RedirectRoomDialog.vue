@@ -1,7 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>{{titleName}}</v-card-title>
-
+    <v-card-title>{{ titleName }}</v-card-title>
     <v-card-text>
       <v-text-field
         v-model="title"
@@ -14,7 +13,6 @@
         outlined
       ></v-text-field>
     </v-card-text>
-
     <v-card-actions class="d-flex justify-space-between">
       <v-btn color="red" class="ma-2 white--text" @click="close()">
         Close
@@ -27,7 +25,7 @@
         class="ma-2 white--text"
         @click="create()"
       >
-        Create
+        Enter
         <v-icon right dark> mdi-view-grid-plus-outline </v-icon>
       </v-btn>
     </v-card-actions>
@@ -40,7 +38,10 @@ export default {
     this.$refs.title.focus();
   },
   data: () => ({
-    rules: [(v) => v.length <= 30 || "Max 30 characters"],
+    rules: [
+      (v) => (!!v && typeof v === "string") || "Title is requided",
+      (v) => v.length <= 30 || "Max 30 characters",
+    ],
     title: "",
   }),
   props: {
@@ -50,8 +51,8 @@ export default {
     },
     titleName: {
       type: String,
-      default: () => "Enter room name"
-    }
+      default: () => "Enter room name",
+    },
   },
   methods: {
     create() {
