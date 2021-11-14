@@ -3,11 +3,11 @@ module.exports = {
   devServer: {
     proxy: {
       "^/api": {
-        target: "http://0.0.0.0:3100",
+        target: "http://192.168.0.100:3100",
         changeOrigin: true,
       },
       "^/socket.io": {
-        target: "http://0.0.0.0:3100",
+        target: "http://192.168.0.100:3100",
         changeOrigin: true,
       },
     },

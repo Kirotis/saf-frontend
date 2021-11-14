@@ -11,13 +11,13 @@ const routes = [
   },
   {
     path: '/host/:roomName',
-    name: 'Room',
+    name: 'RoomHost',
     props: true,
     component: () => import('../views/RoomHost.vue')
   },
   {
     path: '/join/:roomName',
-    name: 'Room',
+    name: 'RoomJoin',
     props: true,
     component: () => import('../views/RoomJoin.vue')
   },

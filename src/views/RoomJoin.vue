@@ -39,6 +39,7 @@ export default {
       .then(({data}) => {
         console.log(`data`, data)
         if (data) {
+          this.$socket.emit("joinRoom", this.roomName);
           this.logs.push(...data.logs);
           this.activeUrl = data.href;
         } else {
