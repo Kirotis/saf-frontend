@@ -3,7 +3,7 @@
     <v-container
       class="log-room d-flex flex-column-reverse grey darken-3 font-weight-bold"
     >
-      link {{ activeUrl }}
+      link {{ params.activeUrl }}
     </v-container>
     <v-container>
       <v-text-field
@@ -15,7 +15,7 @@
         @keyup.enter="editHref"
       ></v-text-field>
     </v-container>
-    <LogRoom :logs="logs" />
+    <LogRoom :logs="params.logs" />
   </section>
 </template>
 

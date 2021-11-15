@@ -29,7 +29,7 @@ export default {
   /* width: 100%;
   height: 600px;
   padding: 6px; */
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 /* .log-room__item {
   
