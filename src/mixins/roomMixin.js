@@ -5,13 +5,16 @@ export default {
             required: true,
         },
     },
+    created() {
+        document.title = "Room: " + this.roomName;
+    },
     data: () => ({
         newHref: "",
-        params : {
+        params: {
             activeUrl: "cYQpo3AHXV8",
             logs: ["Welcome to logs"],
-            isFullScreen: false,
-            isPause: false
+            isMute: false,
+            isPause: false,
         },
     }),
     sockets: {
@@ -32,18 +35,20 @@ export default {
         },
         setVolume(value) {
             this.params.volume = value;
-        }
+        },
     },
     methods: {
-        changeFullScreen(value) {
-            this.socket.emit("changeFullScreen", value);
+        changePause(val) {
+            this.$socket.emit("changePauseVideo", this.roomName, val)
         },
-        changePause(value) {
-            this.socket.emit("changePause", value);
+        changeMute(val) {
+            this.$socket.emit("changeMute", this.roomName, val)
+        },
+        changeVolume(val) {
+            this.$socket.emit("changeVolume", this.roomName, val)
         },
         editHref() {
             this.$socket.emit("editHref", this.roomName, this.newHref);
         },
-
     },
 };
