@@ -52,8 +52,8 @@ export default {
         setPause(value) {
             this.params.isPause = value;
             value
-                ? this.player.playVideo()
-                : this.player.pauseVideo()
+                ? this.player.pauseVideo()
+                : this.player.playVideo()
             const opt = this.player.getMediaReferenceTime()
             console.log(`opt`, opt)
         },

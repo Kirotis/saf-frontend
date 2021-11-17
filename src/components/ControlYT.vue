@@ -21,7 +21,7 @@
             <div>
                 <v-btn x-large icon @click.stop="pause">
                     <v-icon>
-                        {{ params.isPause ? "mdi-pause" : "mdi-play" }}
+                        {{ params.isPause ? "mdi-play" : "mdi-pause" }}
                     </v-icon>
                 </v-btn>
             </div>

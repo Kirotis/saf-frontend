@@ -22,6 +22,9 @@ export default {
     created() {
         this.$socket.emit("joinRoom", this.roomName);
     },
+    activated() {
+        this.$socket.emit("joinRoom", this.roomName);
+    },
     mixins: [roomMixin],
     destroyed() {
         this.$socket.emit("leaveRoom", this.roomName);
