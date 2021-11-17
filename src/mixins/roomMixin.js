@@ -9,11 +9,10 @@ export default {
         document.title = "Room: " + this.roomName;
     },
     data: () => ({
-        newHref: "",
         params: {
             activeUrl: "cYQpo3AHXV8",
-            logs: ["Welcome to logs"],
-            isMute: false,
+            logs: [{message: "Welcome to logs", date: new Date(), id: 'start'}],
+            isMuted: false,
             isPause: false,
         },
     }),
@@ -31,11 +30,15 @@ export default {
             this.params.isPause = value;
         },
         setMute(value) {
-            this.params.isMute = value;
+            this.params.isMuted = value;
         },
         setVolume(value) {
             this.params.volume = value;
         },
+        setRoomInfo(value) {
+            this.params = {...value};
+            console.log(`this.params`, this.params)
+        }
     },
     methods: {
         changePause(val) {
@@ -47,8 +50,8 @@ export default {
         changeVolume(val) {
             this.$socket.emit("changeVolume", this.roomName, val)
         },
-        editHref() {
-            this.$socket.emit("editHref", this.roomName, this.newHref);
+        editHref(val) {
+            this.$socket.emit("editHref", this.roomName, val);
         },
     },
 };

@@ -5,42 +5,32 @@
                 log-room
                 d-flex
                 flex-column-reverse
-                grey
-                darken-3
                 font-weight-bold
                 justify-center
                 align-center
             "
         >
-            <Player :ytid="params.activeUrl" @ready="onYTReady" ref="yt" />
+            <Player :playerVars="{}" :ytid="params.activeUrl" @ready="onYTReady" ref="yt" />
         </v-container>
-        <v-container>
-            <v-text-field
-                @keyup.enter="editHref"
-                dense
-                hint="Gostinaya"
-                label="Room name"
-                outlined
-                ref="test"
-                v-model="newHref"
-            ></v-text-field>
-        </v-container>
-        <ControlYT :params="params" @changeVolume="changeVolume" @changeMute="changeMute" @changePause="changePause"/>
-        <LogRoom :logs="params.logs" />
+        <RoomTabs
+            :params="params"
+            @changeVolume="changeVolume"
+            @changeMute="changeMute"
+            @changePause="changePause"
+            @editHref="editHref"
+        />
     </section>
 </template>
 
 <script>
-import LogRoom from "../components/LogRoom.vue";
-import ControlYT from "../components/ControlYT.vue";
+import RoomTabs from "../components/RoomTabs.vue";
 import roomMixin from "../mixins/roomMixin";
 import { Player } from "vue-youtube-iframe-api";
 
 export default {
     name: "RoomHost",
     components: {
-        LogRoom,
-        ControlYT,
+        RoomTabs,
         Player,
     },
     props: {
@@ -49,20 +39,59 @@ export default {
             required: true,
         },
     },
+    mixins: [roomMixin],
     created() {
         this.$socket.emit("createRoom", this.roomName);
     },
-    mixins: [roomMixin],
+    computed: {
+        player() {
+            return this.$refs.yt.player;
+        }
+    },
+    sockets: {
+        setPause(value) {
+            this.params.isPause = value;
+            value
+                ? this.player.playVideo()
+                : this.player.pauseVideo()
+            const opt = this.player.getMediaReferenceTime()
+            console.log(`opt`, opt)
+        },
+        setMute(value) {
+            this.params.isMuted = value;
+            value
+                ? this.player.mute()
+                : this.player.unMute()
+        },
+        setVolume(value) {
+            this.params.volume = value;
+            this.player.setVolume(value)
+        },
+        setHref(href) {
+            this.params.activeUrl = href;
+        },
+        sendLog(log) {
+            this.params.logs.push(log);
+        },
+        setRoomInfo(value) {
+            this.params = {...value};
+            console.log(`this.params`, this.params)
+        },
+        roomWasDeleted() {
+            this.$router.push("/");
+        },
+    },
     methods: {
         onYTReady() {
-            const yt = this.$refs.yt.player;
+            const yt = this.$refs.yt
             console.log(yt);
             const keys = Object.keys(yt);
 
-            const a = keys.filter((val) => {
-                return typeof yt[val] === "function";
-            });
+            const a = keys.filter((val) => 
+                typeof yt[val] === "function"
+            );
             console.log(a);
+            
         },
     },
     destroyed() {
