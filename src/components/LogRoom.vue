@@ -31,7 +31,4 @@ export default {
 </script>
 
 <style scoped>
-.log-room {
-    /* overflow-y: hidden; */
-}
 </style>

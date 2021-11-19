@@ -75,7 +75,6 @@ export default {
             this.newHref = "";
         },
         changeVolume(val) {
-            if (this.params.isMuted) this.mute();
             this.$emit("changeVolume", val);
         },
         mute() {

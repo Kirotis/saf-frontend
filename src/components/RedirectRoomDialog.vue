@@ -8,7 +8,6 @@
                 counter="30"
                 :rules="rules"
                 :loading="loading"
-                hint="Ti pidor"
                 @keyup.enter="create()"
                 outlined
             ></v-text-field>

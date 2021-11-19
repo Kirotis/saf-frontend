@@ -136,9 +136,4 @@ export default {
     height: 100%;
     margin: 0px;
 }
-/* @media screen and (min-width: 450px) {
-  .home__icon {
-   position: inherit;
-  }
-} */
 </style>
