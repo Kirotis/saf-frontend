@@ -10,7 +10,7 @@ export default {
     },
     data: () => ({
         params: {
-            activeUrl: "cYQpo3AHXV8",
+            activeUrl: "jNQXAC9IVRw",
             logs: [{message: "Welcome to logs", date: new Date(), id: 'start'}],
             isMuted: false,
             isPause: false,
@@ -37,7 +37,6 @@ export default {
         },
         setRoomInfo(value) {
             this.params = {...value};
-            console.log(`this.params`, this.params)
         }
     },
     methods: {
