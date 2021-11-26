@@ -13,9 +13,14 @@
             ></v-text-field>
         </div>
         <div class="btn-actions col-12 col-xs-12 col-sm-6">
-            <div>
-                <v-btn x-large icon>
+            <!-- <div>
+                <v-btn @click.stop="prevVideo" x-large icon>
                     <v-icon> mdi-skip-backward </v-icon>
+                </v-btn>
+            </div> -->
+            <div>
+                <v-btn @click.stop="prevMoment" x-large icon>
+                    <v-icon> mdi-rewind-15 </v-icon>
                 </v-btn>
             </div>
             <div>
@@ -26,10 +31,15 @@
                 </v-btn>
             </div>
             <div>
-                <v-btn x-large icon>
-                    <v-icon> mdi-skip-forward </v-icon>
+                <v-btn @click.stop="nextMoment" x-large icon>
+                    <v-icon> mdi-fast-forward-15 </v-icon>
                 </v-btn>
             </div>
+            <!-- <div>
+                <v-btn @click.stop="nextVideo" x-large icon>
+                    <v-icon> mdi-skip-forward </v-icon>
+                </v-btn>
+            </div> -->
         </div>
         <div class="btn-actions col-12 col-xs-12 col-sm-6">
             <v-slider
@@ -54,8 +64,11 @@
 </template>
 
 <script>
+import controlYTMethodMixin from "../mixins/controlYTMethodMixin";
+
 export default {
     name: "ControlYT",
+    mixins: [controlYTMethodMixin],
     props: {
         params: {
             type: Object,
@@ -73,9 +86,6 @@ export default {
         editHref() {
             this.$emit("editHref", this.newHref);
             this.newHref = "";
-        },
-        changeVolume(val) {
-            this.$emit("changeVolume", val);
         },
         mute() {
             this.$emit("changeMute", !this.params.isMuted);

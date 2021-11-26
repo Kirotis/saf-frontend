@@ -10,7 +10,12 @@
                 align-center
             "
         >
-            <Player :playerVars="{}" :ytid="params.activeUrl" @ready="onYTReady" ref="yt" />
+            <Player
+                :playerVars="{}"
+                :ytid="params.activeUrl"
+                @ready="onYTReady"
+                ref="yt"
+            />
         </v-container>
         <RoomTabs
             :params="params"
@@ -18,6 +23,8 @@
             @changeMute="changeMute"
             @changePause="changePause"
             @editHref="editHref"
+            @prevMoment="prevMoment"
+            @nextMoment="nextMoment"
         />
     </section>
 </template>
@@ -46,26 +53,20 @@ export default {
     computed: {
         player() {
             return this.$refs.yt.player;
-        }
+        },
     },
     sockets: {
         setPause(value) {
             this.params.isPause = value;
-            value
-                ? this.player.pauseVideo()
-                : this.player.playVideo()
-            const opt = this.player.getMediaReferenceTime()
-            console.log(`opt`, opt)
+            value ? this.player.pauseVideo() : this.player.playVideo();
         },
         setMute(value) {
             this.params.isMuted = value;
-            value
-                ? this.player.mute()
-                : this.player.unMute()
+            value ? this.player.mute() : this.player.unMute();
         },
         setVolume(value) {
             this.params.volume = value;
-            this.player.setVolume(value)
+            this.player.setVolume(value);
         },
         setHref(href) {
             this.params.activeUrl = href;
@@ -74,24 +75,41 @@ export default {
             this.params.logs.push(log);
         },
         setRoomInfo(value) {
-            this.params = {...value};
-            console.log(`this.params`, this.params)
+            this.params = { ...value };
         },
         roomWasDeleted() {
             this.$router.push("/");
         },
+        setNextMoment() {
+            const seconds = this.player.getMediaReferenceTime() + 16;
+            this.setYTTime(seconds);
+        },
+        setPreviousMoment() {
+            const seconds = this.player.getMediaReferenceTime() - 16;
+            
+            this.setYTTime(seconds);
+        },
+        // setNextVideo() {
+        //     console.log(`setNextVideo`)
+        //     this.player.nextVideo();
+        // },
+        // setPreviousVideo() {
+        //     console.log(`setPreviousVideo`)
+        //     this.player.previousVideo();
+        // },
     },
     methods: {
+        setYTTime(seconds) {
+            this.player.seekTo(seconds, true);
+        },
+
         onYTReady() {
-            const yt = this.$refs.yt
+            const yt = this.$refs.yt;
             console.log(yt);
             const keys = Object.keys(yt);
 
-            const a = keys.filter((val) => 
-                typeof yt[val] === "function"
-            );
+            const a = keys.filter((val) => typeof yt[val] === "function");
             console.log(a);
-            
         },
     },
     destroyed() {

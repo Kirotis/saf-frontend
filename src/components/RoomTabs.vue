@@ -12,6 +12,8 @@
                     @changeMute="mute"
                     @changePause="pause"
                     @editHref="editHref"
+                    @prevMoment="prevMoment"
+                    @nextMoment="nextMoment"
                 />
             </v-tab-item>
             <v-tab>
@@ -28,6 +30,7 @@
 <script>
 import LogRoom from "../components/LogRoom.vue";
 import ControlYT from "../components/ControlYT.vue";
+import controlYTMethodMixin from "../mixins/controlYTMethodMixin";
 
 export default {
     name: "RoomTabs",
@@ -35,6 +38,7 @@ export default {
         LogRoom,
         ControlYT,
     },
+    mixins: [controlYTMethodMixin],
     props: {
         params: {
             type: Object,
@@ -49,9 +53,6 @@ export default {
     methods: {
         editHref(val) {
             this.$emit("editHref", val);
-        },
-        changeVolume(val) {
-            this.$emit("changeVolume", val);
         },
         mute(val) {
             this.$emit("changeMute", val);

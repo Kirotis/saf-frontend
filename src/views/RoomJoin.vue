@@ -6,6 +6,8 @@
             @changeMute="changeMute"
             @changePause="changePause"
             @editHref="editHref"
+            @prevMoment="prevMoment"
+            @nextMoment="nextMoment"
         />
     </section>
 </template>
