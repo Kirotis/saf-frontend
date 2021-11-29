@@ -13,9 +13,14 @@
             ></v-text-field>
         </div>
         <div class="btn-actions col-12 col-xs-12 col-sm-6">
-            <div>
+            <!-- <div>
                 <v-btn @click.stop="prevVideo" x-large icon>
                     <v-icon> mdi-skip-backward </v-icon>
+                </v-btn>
+            </div> -->
+            <div>
+                <v-btn @click.stop="changeFullScreen" x-large icon>
+                    <v-icon> mdi-fullscreen </v-icon>
                 </v-btn>
             </div>
             <div>
