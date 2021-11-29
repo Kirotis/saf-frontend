@@ -66,5 +66,11 @@ export default {
         nextVideo() {
             this.$socket.emit("changeNextVideo", this.roomName);
         },
+        changeFullScreen() {
+            this.$socket.emit("changeFullScreen", this.roomName);
+        },
+        changeSubtitles() {
+            this.$socket.emit("changeSubtitles", this.roomName);
+        }
     },
 };

@@ -13,11 +13,11 @@
             ></v-text-field>
         </div>
         <div class="btn-actions col-12 col-xs-12 col-sm-6">
-            <!-- <div>
+            <div>
                 <v-btn @click.stop="prevVideo" x-large icon>
                     <v-icon> mdi-skip-backward </v-icon>
                 </v-btn>
-            </div> -->
+            </div>
             <div>
                 <v-btn @click.stop="prevMoment" x-large icon>
                     <v-icon> mdi-rewind-15 </v-icon>
@@ -35,11 +35,11 @@
                     <v-icon> mdi-fast-forward-15 </v-icon>
                 </v-btn>
             </div>
-            <!-- <div>
+            <div>
                 <v-btn @click.stop="nextVideo" x-large icon>
                     <v-icon> mdi-skip-forward </v-icon>
                 </v-btn>
-            </div> -->
+            </div>
         </div>
         <div class="btn-actions col-12 col-xs-12 col-sm-6">
             <v-slider

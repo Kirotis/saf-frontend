@@ -14,6 +14,10 @@
                     @editHref="editHref"
                     @prevMoment="prevMoment"
                     @nextMoment="nextMoment"
+                    @prevVideo="prevVideo"
+                    @nextVideo="nextVideo"
+                    @changeFullScreen="changeFullScreen"
+                    @changeSubtitles="changeSubtitles"
                 />
             </v-tab-item>
             <v-tab>

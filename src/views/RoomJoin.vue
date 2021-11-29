@@ -8,6 +8,10 @@
             @editHref="editHref"
             @prevMoment="prevMoment"
             @nextMoment="nextMoment"
+            @prevVideo="prevVideo"
+            @nextVideo="nextVideo"
+            @changeFullScreen="changeFullScreen"
+            @changeSubtitles="changeSubtitles"
         />
     </section>
 </template>

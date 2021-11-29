@@ -6,14 +6,20 @@ export default {
         nextMoment() {
             this.$emit("nextMoment");
         },
-        // prevVideo() {
-        //     this.$emit("prevVideo");
-        // },
-        // nextVideo() {
-        //     this.$emit("nextVideo");
-        // },
+        prevVideo() {
+            this.$emit("prevVideo");
+        },
+        nextVideo() {
+            this.$emit("nextVideo");
+        },
         changeVolume(val) {
             this.$emit("changeVolume", val);
         },
+        changeFullScreen() {
+            this.$emit("changeFullScreen");
+        },
+        changeSubtitles() {
+            this.$emit("changeSubtitles");
+        }
     },
 };
